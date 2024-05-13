@@ -10,22 +10,22 @@ export function checkPassword(password) {
         throw new Error('Password must be a string');
     }
     if (password.length < 8) {
-        return 'The password must be at least 8 characters long';
+        throw new Error('The password must be at least 8 characters long');
     }
     if (password.length > 20) {
-        return 'The password must be at most 20 characters long';
+        throw new Error('The password must be at most 20 characters long');
     }
-    if (!/[a-z]/.test(password)) {
-        return 'The password must contain at least one lowercase letter';
+    if (!password.match(/[a-z]/)) {
+        throw new Error('The password must contain at least one lowercase letter');
     }
-    if (!/[A-Z]/.test(password)) {
-        return 'The password must contain at least one uppercase letter';
+    if (!password.match(/[A-Z]/)) {
+        throw new Error('The password must contain at least one uppercase letter');
     }
-    if (!/[0-9]/.test(password)) {
-        return 'The password must contain at least one digit';
+    if (!password.match(/[0-9]/)) {
+        throw new Error('The password must contain at least one digit');
     }
-    if (!/[^a-zA-Z0-9]/.test(password)) {
-        return 'The password must contain at least one special character';
+    if (!password.match(/[^a-zA-Z0-9!]/)) {
+        throw new Error('The password must contain at least one special character');
     }
 }
 /**
